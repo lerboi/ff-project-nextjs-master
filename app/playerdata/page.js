@@ -1,4 +1,5 @@
 "use client"
+import NoPlayerFound from "@/components/noplayerfound"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 
@@ -49,6 +50,6 @@ export default function PlayerData(){
 
  return(
     <>
-    {data ? JSON.stringify(data.basicInfo.nickname) : <h1>No data</h1>}
+    {data ? <p>Got info {JSON.stringify(data)}</p> : <NoPlayerFound/>}
     </>
  )}
