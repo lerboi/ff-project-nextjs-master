@@ -21,6 +21,7 @@ export default function Home(){
     <div id="second__section" className="h-[40vh] bg-gradient-to-r from-slate-500 to-orange-300">
 
     </div>
+  
   </>
   )
 }
