@@ -2,7 +2,6 @@
 import React from "react";
 import Link from "next/link";
 import { CiSearch } from "react-icons/ci";
-import { FiAlignJustify } from "react-icons/fi";
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 
@@ -15,10 +14,6 @@ export default function Navbar(){
     ]
 
     const [navopen, setnavopen] = useState(false)
-
-    function handleNav(){
-        console.log("hello")
-    }
 
     return(
         <>

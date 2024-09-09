@@ -1,10 +1,10 @@
 import Card from "@/components/card";
-import SearchPlayer from "../components/searchplayer";
+import SearchPlayer from "@/components/searchplayer";
 
 export default function Home(){
   return(
     <>
-    <div id="hero__container" className="md:flex grid items-center bg-[url('/FF_HeroBG(2).jpg')] bg-center bg-cover h-[60vh] w-full">
+    <div id="hero__container" className="overflow-hidden md:flex grid items-center bg-[url('/FF_HeroBG(2).jpg')] bg-center bg-cover h-[60vh]">
       <div className="md:ml-20">
         <div className="grid grid-rows-2 justify-center">
           <h1 className="font-extrabold text-4xl text-white">FREE FIRE STATS</h1>

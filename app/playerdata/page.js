@@ -1,55 +1,54 @@
 "use client"
 import NoPlayerFound from "@/components/noplayerfound"
-import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
+import { useSearchParams } from "next/navigation"
 
 export default function PlayerData(){
-   const searchParams = useSearchParams()
-   const router = useRouter()
    const [data, setData] = useState(null)
-   const uid = searchParams.get("uid")
    const [loading, setLoading] = useState(true)
-   
+   const searchParams = useSearchParams()
+
    useEffect(() => {
-      async function fetchPlayerData(){
-         const APIurl = "https://free-ff-api-src-5plp.onrender.com/api/v1/account?region=IND&uid="
-         const playerUrl = APIurl + uid
-            try{
-               const response = await fetch(playerUrl, {
-                  method: "GET",
-                  headers: {
-                     "Content-Type": "application/json"
-                  }
-               })
-         
-               if (response.ok){
-                  const playerData = await response.json()
-         
-                  if (playerData && Object.keys(playerData).length > 0) {
-                     setData(playerData)
-                     setLoading(false)
-                  } else {
-                     setData(null)
-                     setLoading(false)
-                  }
-               } else {
-                  setData(null)}
-                  setLoading(false)
-            }
-            catch(err){
-               console.log(err)
+      const getPlayerData = async() =>{
+         const uid = searchParams.get("uid")
+         const api = `http://localhost:3000/api/playerapi?uid=${uid}`
+         try{
+            const response = await fetch(api, {
+               method: "GET",
+               headers: {
+                  "Content-Type": "application/json"
+               }
+            })
+
+            if(response.ok){
+               const playerdata = await response.json()
                setLoading(false)
+               setData(playerdata)
+            } else {
+               setLoading(false)
+               setData(null)
+               console.log("response status 400")
             }
          }
-         fetchPlayerData()
-   }, [uid])  
+         catch (err){
+            setLoading(false)
+            setData(null)
+            console.log(err)
+         }
+      }
 
-   if (loading){
-      return <h1>Loading</h1>
-   }
+      getPlayerData()
+   }, [])
 
- return(
-    <>
-    {data ? <p>Got info {JSON.stringify(data)}</p> : <NoPlayerFound/>}
-    </>
- )}
+
+if(loading) {return(
+   <h1>Load</h1>
+)}
+if(!loading){
+   return(
+      <div className="max-w-full w-full overflow-x-hidden">
+        {data ? <p>Got info {JSON.stringify(data)}</p> : <NoPlayerFound/>}
+      </div>
+   )}
+}
+ 
