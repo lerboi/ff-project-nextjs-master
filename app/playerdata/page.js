@@ -1,7 +1,9 @@
 "use client"
-import NoPlayerFound from "@/components/noplayerfound"
+import NoPlayerFound from "@/components/NoPlayerFound"
 import { useEffect, useState } from "react"
 import { useSearchParams } from "next/navigation"
+import ClanInfo from "@/components/ClanInfo"
+import ClashSquadInfo from "@/components/ClashSquadInfo"
 
 export default function PlayerData(){
    const [data, setData] = useState(null)
@@ -46,9 +48,28 @@ if(loading) {return(
 )}
 if(!loading){
    return(
+      <>
       <div className="max-w-full w-full overflow-x-hidden">
-        {data ? <p>Got info {JSON.stringify(data)}</p> : <NoPlayerFound/>}
-      </div>
+        {data ? 
+
+         <div className="flex flex-col gap-5">
+            <div className="bg-slate-600 flex w-full h-[200px] bg-[url('../public/FF_HeroBG.jpg')] bg-center bg-cover">
+               <div className="flex flex-col justify-end p-10">
+                  <p className="font-bold text-white text-2xl">{JSON.stringify(data.basicInfo.nickname).replace(/^.|.$/g, "")}</p>
+                  <p className="text-slate-300 fo">{JSON.stringify(data.socialInfo.signature).replace(/^.|.$/g, "")}</p>
+               </div>
+            </div>
+            <div className="h-[250px] bg-slate-800 border-t-2 border-zinc-500">
+               <ClanInfo data={data} />
+            </div>
+            <div className="h-[200px] bg-slate-800 border-t-2 border-zinc-500">
+               <ClashSquadInfo data={data} />
+            </div>
+         </div> 
+
+        : <NoPlayerFound/>}
+      </div> 
+      </> 
    )}
 }
  

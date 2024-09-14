@@ -5,19 +5,36 @@ import { useRouter } from "next/navigation"
 export default function SearchPlayer(){
     const router = useRouter()
     const [input, setInput] = useState("")
+    const [region, setRegion] = useState("ind")
+
+    const regions = [
+        {regionName: "India", id: "ind"},
+        {regionName: "Indonesia", id: "id"},
+        {regionName: "Thailand", id: "th"},
+        {regionName: "Brazil", id: "br"},
+        {regionName: "Singapore", id: "sg"},
+        {regionName: "Bangladesh", id: "bd"},
+        {regionName: "Pakistan", id: "pk"},
+        {regionName: "US", id: "us"},
+        {regionName: "Malaysia", id: "my"},
+        {regionName: "Vietnam", id: "vn"},
+        {regionName: "Taiwan", id: "tw"},
+        {regionName: "Middle East", id: "me"}
+    ]
 
     function handleSubmit(e){
         e.preventDefault()
-        console.log(input)
-        router.push(`/playerdata?uid=${encodeURIComponent(input)}`)
+        router.push(`/playerdata?uid=${encodeURIComponent(input)}&region=${region}`)
     }
 
     return(
         
         <form onSubmit={handleSubmit} className="flex items-center justify-center">
             <div>
-            <select className="bg-slate-700 text-xl px-3 text-zinc-200 h-[60px] rounded-l-[10px]">
-                <option value="IND" className=""></option>
+            <select onChange={e => setRegion(e.target.value)} id="regionID" className="bg-slate-700 text-xl px-3 text-zinc-200 h-[60px] rounded-l-[10px]">
+                {regions.map(region => {
+                    return <option key={region.id} value={region.id}>{region.regionName}</option>
+                })}
             </select>
             </div>
             <div>

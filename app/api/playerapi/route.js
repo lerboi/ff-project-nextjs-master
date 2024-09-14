@@ -4,9 +4,12 @@ import { NextResponse, NextRequest } from "next/server";
 export async function GET(req){
     const { searchParams } = new URL(req.url)
     const uid = searchParams.get("uid")
-    const API_KEY = "lerboi"
-    const api = `https://www.info.freefireinfo.site/api/sg/${uid}?key=${API_KEY}`
+    const region = searchParams.get("region")
+    console.log(region)
+    const API_KEY = process.env.API_KEY
+    const api = `https://www.info.freefireinfo.site/api/${region}/${uid}?key=${API_KEY}`
     console.log(api)
+
     try{
         const response = await fetch(api, {
             method: "GET",
