@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 
 export async function GET(){
     const API_KEY = process.env.API_KEY
-    const api = `https://www.ffapi.freefireinfo.site/leaderboard/vn/br?key=${API_KEY}`
+    const region = "vn"
+    const api = `https://www.ffapi.freefireinfo.site/leaderboard/${region}/br?key=${API_KEY}`
 
     try{
         const response = await fetch(api, {

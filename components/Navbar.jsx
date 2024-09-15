@@ -30,7 +30,7 @@ export default function Navbar({params}){
                         </div>
                     </div>
                     
-                    <div className={`md:flex bg-slate-800 w-full left-0 absolute md:static transition-all ease-in-out md:opacity-100 opacity-0 duration-500 ${navopen ? "top-[70px] opacity-100" : "top-[-200px]" }`}>
+                    <div className={`md:flex bg-slate-800 w-full left-0 absolute md:static transition-all ease-in-out md:opacity-100 z-50 opacity-0 duration-500 ${navopen ? "top-[70px] opacity-100" : "top-[-200px]" }`}>
                         {navlinks.map(link => {
                             return <li key={link.href} className="hover:text-white hover:border-b-2 hover:border-b-slate-300 my-4 md:my-0 transition-all ease-in-out mx-3 text-slate-300"><Link href={link.href}>{link.label}</Link></li>
                         })}

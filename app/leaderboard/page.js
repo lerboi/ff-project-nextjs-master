@@ -8,8 +8,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { useRouter } from "next/navigation"
+import LeaderboardRegion from "@/components/LeaderboardRegion"
 
 export default function Leaderboard() {
+  const router = useRouter()
   const [players, setPlayers] = useState(null)
   const [loading, setLoading]= useState(true)
 
@@ -39,6 +42,10 @@ export default function Leaderboard() {
     getData()
   }, [])
 
+  function showPlayerInfo(uid, region){
+    router.push(`http://localhost:3000/playerdata?uid=${uid}&region=${region}`)
+  }
+
   if (!players && !loading){
     return <h1 className="text-white">Cant find player data</h1>
   }
@@ -55,7 +62,11 @@ export default function Leaderboard() {
 
   else{
     return (
-        <div className="w-full xl:ml-32 xl:max-w-[900px] py-10">
+      <>
+      <div className="flex flex-col items-center">
+        <LeaderboardRegion/>
+      </div>
+      <div className="w-full xl:ml-32 xl:max-w-[900px] py-10">
           <h1 className="ml-10 text-2xl text-white font-bold mb-5">Leaderboard</h1>
           <Table>
             <TableHeader className="text-slate-300">
@@ -73,7 +84,7 @@ export default function Leaderboard() {
                   className={index % 2 === 0 ? "bg-slate-700" : "bg-slate-500"}
                 >
                   <TableCell className="font-medium">{player.pos}</TableCell>
-                  <TableCell>{player.nickname}</TableCell>
+                  <TableCell value={player.account_id}><span onClick={() => showPlayerInfo(player.account_id, player.region)}>{player.nickname}</span></TableCell>
                   <TableCell>{player.level}</TableCell>
                   <TableCell>{player.region}</TableCell>
                 </TableRow>
@@ -81,6 +92,8 @@ export default function Leaderboard() {
             </TableBody>
           </Table>
         </div>
+      </>
+        
       )
     }
   }

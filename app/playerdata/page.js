@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { useSearchParams } from "next/navigation"
 import ClanInfo from "@/components/ClanInfo"
 import ClashSquadInfo from "@/components/ClashSquadInfo"
+import NoClanInfo from "@/components/NoClanInfo"
 
 export default function PlayerData(){
    const [data, setData] = useState(null)
@@ -13,7 +14,8 @@ export default function PlayerData(){
    useEffect(() => {
       const getPlayerData = async() =>{
          const uid = searchParams.get("uid")
-         const api = `http://localhost:3000/api/playerapi?uid=${uid}`
+         const region = searchParams.get("region")
+         const api = `http://localhost:3000/api/playerapi?uid=${uid}&region=${region}`
          try{
             const response = await fetch(api, {
                method: "GET",
@@ -60,7 +62,7 @@ if(!loading){
                </div>
             </div>
             <div className="h-[250px] bg-slate-800 border-t-2 border-zinc-500">
-               <ClanInfo data={data} />
+               {data.clanBasicInfo.clanName ? <ClanInfo data={data} />: <NoClanInfo/>}
             </div>
             <div className="h-[200px] bg-slate-800 border-t-2 border-zinc-500">
                <ClashSquadInfo data={data} />

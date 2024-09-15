@@ -16,8 +16,6 @@ export default function Home(){
       </div>
       <div className="w-full lg:justify-center lg:items-center flex justify-center gap-5 h-full items-start">
         <PlayerCardJsx/>
-        <PlayerCardJsx/>
-        <PlayerCardJsx/>
       </div>
     </div>
     <div id="second__section" className="h-[40vh] bg-gradient-to-r from-slate-500 to-orange-300">
