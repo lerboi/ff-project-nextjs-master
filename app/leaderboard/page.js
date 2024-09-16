@@ -13,12 +13,13 @@ import LeaderboardRegion from "@/components/LeaderboardRegion"
 
 export default function Leaderboard() {
   const router = useRouter()
-  const [players, setPlayers] = useState(null)
-  const [loading, setLoading]= useState(true)
+  const [players, setPlayers] = useState(null) //data fetched from api
+  const [loading, setLoading]= useState(true) 
+  const [region, setRegion] = useState("vn") //pass to LeaderboardRegion component to refresh page onChange
 
   useEffect(()=> {
     const getData = async () => {
-        const api = "http://localhost:3000/api/leaderboardapi"
+        const api = `http://localhost:3000/api/leaderboardapi?region=${region}`
         try{
             const response = await fetch(api, {
                 method: "GET",
@@ -40,7 +41,7 @@ export default function Leaderboard() {
         }
     }
     getData()
-  }, [])
+  }, [region])
 
   function showPlayerInfo(uid, region){
     router.push(`http://localhost:3000/playerdata?uid=${uid}&region=${region}`)
@@ -64,7 +65,7 @@ export default function Leaderboard() {
     return (
       <>
       <div className="flex flex-col items-center">
-        <LeaderboardRegion/>
+        <LeaderboardRegion setRegion={setRegion}/>
       </div>
       <div className="w-full xl:ml-32 xl:max-w-[900px] py-10">
           <h1 className="ml-10 text-2xl text-white font-bold mb-5">Leaderboard</h1>
@@ -84,7 +85,7 @@ export default function Leaderboard() {
                   className={index % 2 === 0 ? "bg-slate-700" : "bg-slate-500"}
                 >
                   <TableCell className="font-medium">{player.pos}</TableCell>
-                  <TableCell value={player.account_id}><span onClick={() => showPlayerInfo(player.account_id, player.region)}>{player.nickname}</span></TableCell>
+                  <TableCell value={player.account_id}><span onClick={() => showPlayerInfo(player.account_id, player.region.toLowerCase())}>{player.nickname}</span></TableCell>
                   <TableCell>{player.level}</TableCell>
                   <TableCell>{player.region}</TableCell>
                 </TableRow>

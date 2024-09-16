@@ -1,26 +1,19 @@
 "use client"
 import { useState } from "react"
 
-export default function LeaderboardRegion(){
-    const [region, setRegion] = useState("vn")
+export default function LeaderboardRegion( {setRegion} ){
 
     const regions = [
+        {regionName: "Vietnam", id: "vn"},
         {regionName: "India", id: "ind"},
-        {regionName: "Indonesia", id: "id"},
         {regionName: "Thailand", id: "th"},
         {regionName: "Brazil", id: "br"},
         {regionName: "Singapore", id: "sg"},
-        {regionName: "Bangladesh", id: "bd"},
-        {regionName: "Pakistan", id: "pk"},
-        {regionName: "US", id: "us"},
-        {regionName: "Malaysia", id: "my"},
-        {regionName: "Vietnam", id: "vn"},
-        {regionName: "Taiwan", id: "tw"},
         {regionName: "Middle East", id: "me"}
     ]
 
-    function refreshLeaderboard(){
-        
+    function refreshLeaderboard(e){
+        setRegion(e.target.value)
     }
 
     return(
