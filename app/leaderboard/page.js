@@ -19,7 +19,7 @@ export default function Leaderboard() {
 
   useEffect(()=> {
     const getData = async () => {
-        const api = `http://localhost:3000/api/leaderboardapi?region=${region}`
+        const api = `http://localhost:3000/api/lbAPI?region=${region}`
         try{
             const response = await fetch(api, {
                 method: "GET",
@@ -32,6 +32,10 @@ export default function Leaderboard() {
                 const playerData = await response.json()
                 setLoading(false)
                 setPlayers(playerData)
+            } 
+            else {
+              setLoading(false)
+              setPlayers(null)
             }
         }
         catch(err){
@@ -68,6 +72,7 @@ export default function Leaderboard() {
         <LeaderboardRegion setRegion={setRegion}/>
       </div>
       <div className="w-full xl:ml-32 xl:max-w-[900px] py-10">
+          <div className="w-full h-[3px] mb-10 bg-slate-300"></div>
           <h1 className="ml-10 text-2xl text-white font-bold mb-5">Leaderboard</h1>
           <Table>
             <TableHeader className="text-slate-300">

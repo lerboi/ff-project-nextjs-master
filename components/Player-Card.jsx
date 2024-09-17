@@ -31,7 +31,7 @@ export function PlayerCardJsx() {
   }, [])
   console.log(cardData)
   return (
-    <div className='flex gap-5'>
+    <div className='flex gap-5 text-slate-800'>
       {cardData.map((card) => (
         <Card key={card.account_id} className="w-36 h-48 relative overflow-hidden bg-slate-500">
         <div

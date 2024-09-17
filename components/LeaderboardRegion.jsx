@@ -1,5 +1,4 @@
 "use client"
-import { useState } from "react"
 
 export default function LeaderboardRegion( {setRegion} ){
 
@@ -18,9 +17,9 @@ export default function LeaderboardRegion( {setRegion} ){
 
     return(
         <>
-        <label className="text-white text-2xl">Region</label>
+        <label className="text-white text-2xl my-3">Region</label>
         <form onChange={refreshLeaderboard}>
-          <select className="w-96">
+          <select className="w-96 p-2 bg-slate-200 rounded-xl my-1">
             {regions.map(region => {
                 return <option key={region.id} value={region.id}>{region.regionName}</option>
             })}

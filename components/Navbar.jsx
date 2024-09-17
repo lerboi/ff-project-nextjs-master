@@ -34,6 +34,10 @@ export default function Navbar({params}){
                         {navlinks.map(link => {
                             return <li key={link.href} className="hover:text-white hover:border-b-2 hover:border-b-slate-300 my-4 md:my-0 transition-all ease-in-out mx-3 text-slate-300"><Link href={link.href}>{link.label}</Link></li>
                         })}
+                        <li className="hover:text-white hover:border-b-2 hover:border-b-slate-300 my-4 md:my-0 transition-all ease-in-out mx-3 text-slate-300"><Link href="/login">Login</Link></li>
+                    </div>
+                    <div className="whitespace-nowrap mr-8 hidden md:block">
+                        <button className="bg-orange-200 text-slate-800 py-2 px-3 hover:bg-orange-500 hover:text-slate-800 delay-[10] transition-all rounded">Login</button>
                     </div>
                     <GiHamburgerMenu className="text-white absolute md:hidden right-0 top-0 m-6 text-2xl" onClick={() => setnavopen(!navopen)}/>
                 </ul>

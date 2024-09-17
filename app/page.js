@@ -5,7 +5,7 @@ export default function Home(){
   
 
   return(
-    <div id="main_body" onClick={closeNavbar}>
+    <div id="main_body">
     <div id="hero__container" className="overflow-hidden lg:flex grid items-center bg-[url('/FF_HeroBG(2).jpg')] bg-center bg-cover h-[60vh]">
       <div className="lg:ml-20">
         <div className="grid grid-rows-2 justify-center">
