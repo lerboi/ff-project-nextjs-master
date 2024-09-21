@@ -5,9 +5,11 @@ import { CiSearch } from "react-icons/ci";
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Popup from "@/components/Popup";
+import {useRouter} from "next/navigation"
 
 
 export default function Navbar({params}){
+    const router = useRouter()
     const navlinks = [
         {label: "Home", href:"/"},
         {label: "Leaderboards", href:"/leaderboard"},
@@ -16,6 +18,11 @@ export default function Navbar({params}){
 
     const [popup, setPopup] = useState(false)
     const [navopen, setnavopen] = useState(false)
+
+    function handleClick() {
+        console.log("hello")
+        router.push("/api/auth/signin")
+    }
 
     return(
         <>
@@ -32,12 +39,12 @@ export default function Navbar({params}){
                     
                     <div className={`md:flex bg-slate-800 w-full left-0 absolute md:static transition-all ease-in-out md:opacity-100 z-50 opacity-0 duration-500 ${navopen ? "top-[70px] opacity-100" : "top-[-200px]" }`}>
                         {navlinks.map(link => {
-                            return <li key={link.href} className="hover:text-white hover:border-b-2 hover:border-b-slate-300 my-4 md:my-0 transition-all ease-in-out mx-3 text-slate-300"><Link href={link.href}>{link.label}</Link></li>
+                            return <li key={link.href} onClick={() => setnavopen(false)} className="hover:text-white hover:border-b-2 hover:border-b-slate-300 my-4 md:my-0 transition-all ease-in-out mx-3 text-slate-300"><Link href={link.href}>{link.label}</Link></li>
                         })}
-                        <li className="hover:text-white hover:border-b-2 hover:border-b-slate-300 my-4 md:my-0 transition-all ease-in-out mx-3 text-slate-300"><Link href="/login">Login</Link></li>
+                        <li onClick={handleClick} className="hover:text-white hover:border-b-2 hover:border-b-slate-300 my-4 md:my-0 transition-all ease-in-out mx-3 md:hidden block text-slate-300">Login</li>
                     </div>
                     <div className="whitespace-nowrap mr-8 hidden md:block">
-                        <button className="bg-orange-200 text-slate-800 py-2 px-3 hover:bg-orange-500 hover:text-slate-800 delay-[10] transition-all rounded">Login</button>
+                        <button className="bg-orange-200 text-slate-800 py-2 px-3 hover:bg-orange-500 hover:text-slate-800 hover:cursor-pointer delay-[10] transition-all rounded">Login</button>
                     </div>
                     <GiHamburgerMenu className="text-white absolute md:hidden right-0 top-0 m-6 text-2xl" onClick={() => setnavopen(!navopen)}/>
                 </ul>

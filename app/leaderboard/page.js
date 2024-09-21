@@ -90,7 +90,7 @@ export default function Leaderboard() {
                   className={index % 2 === 0 ? "bg-slate-700" : "bg-slate-500"}
                 >
                   <TableCell className="font-medium">{player.pos}</TableCell>
-                  <TableCell value={player.account_id}><span onClick={() => showPlayerInfo(player.account_id, player.region.toLowerCase())}>{player.nickname}</span></TableCell>
+                  <TableCell value={player.account_id}><span className="hover:cursor-pointer" onClick={() => showPlayerInfo(player.account_id, player.region.toLowerCase())}>{player.nickname}</span></TableCell>
                   <TableCell>{player.level}</TableCell>
                   <TableCell>{player.region}</TableCell>
                 </TableRow>

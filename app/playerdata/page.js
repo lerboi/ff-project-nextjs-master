@@ -55,7 +55,7 @@ if(!loading){
         {data ? 
 
          <div className=" flex flex-col gap-5">
-            <div className="bg-slate-600 flex w-full h-[200px] backdrop-blur-md bg-[url('../public/FF_HeroBG.jpg')] bg-center bg-cover">
+            <div className="bg-slate-600 z-[-999] flex w-full h-[200px] backdrop-blur-md bg-[url('../public/FF_HeroBG.jpg')] bg-center bg-cover">
                <div className="backdrop-blur-[3px] w-full flex flex-col justify-end p-10">
                   <p className="font-extrabold text-white text-2xl">{data.basicInfo.nickname.replace(/^.|.$/g, "")}</p>
                   <p className="text-slate-300 fo">{data.socialInfo.signature.replace(/^.|.$/g, "")}</p>
